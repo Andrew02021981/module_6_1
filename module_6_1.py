@@ -1,24 +1,21 @@
-class Animal:
-    alive = True
-    fed = False
-
-    def __init__(self, name):
-        self.name = name
-
-    def eat(self, food):
-        self.food = food
-        if isinstance(food, Fruit):
-            print(f'{self.name} съел {food.name}')
-            Animal.fed = True
-        elif isinstance(food, Flower):
-            print(f'{self.name} не стал есть {food.name}')
-            Animal.alive = False
-
 class Plant:
     edible = False
-
     def __init__(self, name):
         self.name = name
+
+class Animal:
+    def __init__(self, name, *args):
+        self.name = name
+        self.alive = True
+        self.fed = False
+
+    def eat(self, food : Plant):
+        if food.edible:
+            print(f'{self.name} съел {food.name}')
+            self.fed = True
+        else:
+            print(f'{self.name} не съел {food.name}')
+            self.alive = False
 
 class Mammal(Animal):
     pass
